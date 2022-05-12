@@ -9,8 +9,9 @@ export const validateCount = (email, password, navigation) => {
   AsyncStorage.getItem('user')
     .then(dataUser => {
       const data = JSON.parse(dataUser);
+      console.log(data.length);
       let counter = 1;
-      data.map(item => {
+      data?.map(item => {
         if (item.user === email && item.password === password) {
           counter = 0;
           accessApp(item.user);
@@ -24,7 +25,7 @@ export const validateCount = (email, password, navigation) => {
       });
     })
     .catch(error => {
-      console.log(`Algo salio mal Error${error}`);
+      Alert.alert('', 'Credentials do not match');
     });
 };
 
